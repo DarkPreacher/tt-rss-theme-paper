@@ -1,0 +1,562 @@
+/*
+Tiny Tiny RSS Paper Theme
+Author: Dark Preacher
+Email: dark[at]darklab.ru
+Version: 0.1.0
+Date: 2013.07.12
+
+Some icons are created by FatCow Web Hosting.
+These icons are licensed under a Creative Commons Attribution 3.0 License.
+http://creativecommons.org/licenses/by/3.0/us/
+
+You can see full set here:
+http://www.fatcow.com/free-icons
+*/
+
+@import "../css/tt-rss.css";
+@import "../css/cdm.css";
+@import "../css/prefs.css";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=latin,cyrillic);
+* {
+  font-family: sans-serif !important;
+}
+body {
+  font-size: 16px !important;
+}
+div.cdmContentInner p,
+div.postContent p {
+  max-width: 100% !important;
+}
+.hl a.title,
+div.cdm.expandable a.title,
+div.postReply div.postTitle a.title,
+div.cdm.active div.cdmHeader a.title,
+div.cdm.expanded div.cdmHeader a.title {
+  color: #464646 !important;
+  text-decoration: none !important;
+  font-weight: bold;
+  font-size: 18px !important;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+}
+div.postReply div.postTitle a {
+  color: #464646 !important;
+  text-decoration: none !important;
+  font-weight: bold;
+  font-size: 18px !important;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+}
+div.cdmHeader span.author,
+div.postReply div.postTitle span.author {
+  color: #464646;
+  font-size: 14px;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+}
+/* loader */
+
+#overlay {
+  background: #f5f1e8;
+  color: #f4efe2;
+}
+#overlay .insensitive {
+  color: inherit;
+}
+#overlay_inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -220px;
+  padding: 20px;
+  width: 400px;
+  border-radius: 5px;
+  background-color: #464646;
+  color: #f4efe2;
+  text-align: center;
+}
+#overlay_inner .dijitProgressBar {
+  display: inline-block;
+  margin-top: 20px;
+}
+#overlay_inner .dijitProgressBarLabel {
+  display: none;
+}
+#overlay_inner .dijitProgressBarEmpty {
+  border: 0;
+  border-radius: 4px;
+  background-color: #464646;
+}
+#overlay_inner .dijitProgressBarTile {
+  border-radius: 3px;
+  background-color: #f4efe2;
+}
+#overlay_inner .dijitProgressBarFull {
+  position: relative;
+  border: 0;
+}
+/* images replace */
+
+img[src*="images/indicator_white.gif"] {
+  display: inline-block;
+  padding-right: 16px;
+  width: 0 !important;
+  height: 16px !important;
+  background: transparent url(paper/loader-circular.gif) 50% 100% no-repeat !important;
+}
+img[src*="images/indicator_tiny.gif"] {
+  display: inline-block;
+  padding-right: 16px;
+  width: 0 !important;
+  height: 11px !important;
+  background: transparent url(paper/loader-bars.gif) 50% 100% no-repeat !important;
+}
+img[src*="images/tag.png"],
+img[src*="images/fresh.png"],
+img[src*="images/mark_set.svg"],
+img[src*="images/mark_unset.svg"],
+img[src*="images/pub_set.svg"],
+img[src*="images/pub_unset.svg"],
+img[src*="images/archive.png"],
+img[src*="images/recently_read.png"] {
+  padding-right: 16px !important;
+  width: 0 !important;
+  height: 16px !important;
+}
+img[src*="images/tag.png"] {
+  background: transparent url(paper/icon-asterisk.png) 50% 50% no-repeat !important;
+}
+img[src*="images/fresh.png"] {
+  background: transparent url(paper/icon-new.png) 50% 50% no-repeat !important;
+}
+img[src*="images/mark_set.svg"],
+img[src*="images/mark_unset.svg"] {
+  background: transparent url(paper/icon-star.png) 50% 50% no-repeat !important;
+}
+img[src*="images/pub_set.svg"],
+img[src*="images/pub_unset.svg"] {
+  background: transparent url(paper/icon-rss.png) 50% 50% no-repeat !important;
+}
+img[src*="images/archive.png"] {
+  background: transparent url(paper/icon-package.png) 50% 50% no-repeat !important;
+}
+img[src*="images/recently_read.png"] {
+  background: transparent url(paper/icon-time.png) 50% 50% no-repeat !important;
+}
+img[src*="images/mark_unset.svg"],
+img[src*="images/pub_unset.svg"] {
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  /* Firefox 10+, Firefox on Android */
+  filter: gray;
+  /* IE6-9 */
+  -webkit-filter: grayscale(100%);
+  /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+
+}
+#collapse_feeds_btn {
+  padding: 1px 0 1px 15px;
+  background: url(paper/collapse-sidebar.png) 50% 50% no-repeat;
+  text-indent: -999em;
+}
+/* sidebar */
+
+.dijitTree {
+  background-color: #f4efe2;
+  color: #f4efe2;
+}
+/* all sort of styles */
+
+#ttrssMain .dijitSplitContainer-dijitContentPane,
+#ttrssMain .dijitBorderContainer-dijitContentPane {
+  background-color: #f5f1e8;
+}
+#ttrssMain #feeds-holder,
+#ttrssMain #content-wrap {
+  border: 0 !important;
+}
+#ttrssMain .dijitSplitterV,
+#ttrssMain .dijitGutterV {
+  background: #464646;
+}
+#ttrssMain .dijitSplitterVHover {
+  background: #5e5e5e;
+}
+#ttrssMain .dijitTreeExpandoLeaf {
+  background-image: none;
+}
+#ttrssMain .dijitTreeRow,
+#ttrssMain .dijitTreeNode .dojoDndItemBefore,
+#ttrssMain .dijitTreeNode .dojoDndItemAfter {
+  display: block;
+  padding: 1px 0 !important;
+  border: 0 none !important;
+  background-color: #f4efe2;
+  color: #464646;
+  font-size: 12px;
+  line-height: 20px;
+}
+#ttrssMain .dijitTreeRowHover,
+#ttrssMain .dijitTreeNode .dojoDndItemBeforeHover,
+#ttrssMain .dijitTreeNode .dojoDndItemAfterHover {
+  background-color: #5e5e5e;
+  background-image: none;
+  color: #f4efe2;
+}
+#ttrssMain .dijitTreeRowHover .dijitTreeLabel,
+#ttrssMain .dijitTreeNode .dojoDndItemBeforeHover .dijitTreeLabel,
+#ttrssMain .dijitTreeNode .dojoDndItemAfterHover .dijitTreeLabel {
+  color: #f4efe2;
+}
+#ttrssMain .dijitTreeRow .counterNode,
+#ttrssMain .dijitTreeNode .dojoDndItemBefore .counterNode,
+#ttrssMain .dijitTreeNode .dojoDndItemAfter .counterNode {
+  top: 0;
+  margin-right: 0;
+  padding: 0 4px;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: #464646;
+  color: #f4efe2;
+  font-size: 12px;
+  line-height: 24px;
+}
+#ttrssMain .dijitTreeRow .counterNode:before,
+#ttrssMain .dijitTreeNode .dojoDndItemBefore .counterNode:before,
+#ttrssMain .dijitTreeNode .dojoDndItemAfter .counterNode:before {
+  position: absolute;
+  top: 0;
+  left: -6px;
+  width: 0;
+  height: 0;
+  border-top: 12px solid rgba(255, 255, 255, 0);
+  border-right: 6px solid #464646;
+  border-bottom: 12px solid rgba(255, 255, 255, 0);
+  content: '';
+}
+#ttrssMain .dijitTreeRow .counterNode.aux,
+#ttrssMain .dijitTreeNode .dojoDndItemBefore .counterNode.aux,
+#ttrssMain .dijitTreeNode .dojoDndItemAfter .counterNode.aux {
+  background-color: #2d2d2d;
+}
+#ttrssMain .dijitTreeRow .counterNode.aux:before,
+#ttrssMain .dijitTreeNode .dojoDndItemBefore .counterNode.aux:before,
+#ttrssMain .dijitTreeNode .dojoDndItemAfter .counterNode.aux:before {
+  border-right-color: #2d2d2d;
+}
+#ttrssMain .dijitTreeRowSelected {
+  background-color: #5e5e5e;
+  background-image: none;
+  color: #f4efe2;
+}
+#ttrssMain .dijitTreeLabel {
+  margin: 0 8px;
+  color: #464646;
+  vertical-align: text-top;
+}
+#ttrssMain .dijitTreeRowSelected .dijitTreeLabel {
+  color: #f4efe2;
+  text-shadow: none;
+}
+#ttrssMain .dijitTreeIsRoot > .dijitTreeRow {
+  display: block;
+  background-color: #464646;
+  color: #f4efe2;
+  font-size: 14px;
+}
+#ttrssMain .dijitTreeIsRoot > .dijitTreeRowHover {
+  border-color: #2d2d2d !important;
+  background-color: #2d2d2d;
+}
+#ttrssMain .dijitTreeIsRoot > .dijitTreeRow .dijitTreeLabel {
+  color: #f4efe2;
+  line-height: 28px;
+}
+#ttrssMain .dijitTreeIsRoot > .dijitTreeRow .counterNode {
+  background-color: #f4efe2;
+  color: #464646;
+  line-height: 30px;
+}
+#ttrssMain .dijitTreeIsRoot > .dijitTreeRow .counterNode:before {
+  border-top-width: 15px;
+  border-right: 6px solid #f4efe2;
+  border-bottom-width: 15px;
+}
+#ttrssMain .dijitTreeIsRoot > .dijitTreeRow .dijitTreeExpando {
+  margin-top: 7px;
+  background-image: url(paper/tree-expand.png);
+}
+#ttrssMain .dijitTreeIsRoot > .dijitTreeRow .loadingNode {
+  margin-top: 6px;
+  width: 11px;
+}
+#ttrssMain #feedTree img.feedIcon,
+#ttrssMain #feedTree img.tinyFeedIcon {
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  /* Firefox 10+, Firefox on Android */
+  filter: gray;
+  /* IE6-9 */
+  -webkit-filter: grayscale(100%);
+  /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+
+}
+#ttrssMain #feedTree .dijitTreeRowHover img.feedIcon,
+#ttrssMain #feedTree .dijitTreeRowHover img.tinyFeedIcon,
+#ttrssMain #feedTree .dijitTreeRowSelected img.feedIcon,
+#ttrssMain #feedTree .dijitTreeRowSelected img.tinyFeedIcon {
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -webkit-filter: grayscale(0%);
+}
+#ttrssMain .dijitInline[style*="padding-left: 19px"] {
+  padding-left: 12px !important;
+}
+#ttrssMain div#headlines-toolbar,
+#ttrssMain .dijitToolbar {
+  padding: 6px 0 2px 4px;
+  border: 0 !important;
+  background: #464646;
+  color: #f4efe2;
+  text-shadow: none;
+}
+#ttrssMain div#headlines-toolbar a,
+#ttrssMain .dijitToolbar a {
+  color: #f4efe2 !important;
+}
+#ttrssMain div#headlines-toolbar a:hover,
+#ttrssMain .dijitToolbar a:hover {
+  color: #f5f1e8 !important;
+}
+#ttrssMain .dijitSplitContainer-child,
+#ttrssMain .dijitBorderContainer-child {
+  padding: 0;
+  border: 0 !important;
+}
+#ttrssMain #toolbar {
+  background: #464646;
+}
+#ttrssMain .dijitSplitterH,
+#ttrssMain .dijitGutterH {
+  height: 1px;
+}
+#ttrssMain #main_toolbar_form {
+  float: left;
+  width: auto;
+}
+#ttrssMain .actionChooser {
+  float: right;
+}
+#ttrssMain .dijitToolbar .dijitToggleButton,
+#ttrssMain .dijitToolbar .dijitButton,
+#ttrssMain .dijitToolbar .dijitDropDownButton,
+#ttrssMain .dijitToolbar .dijitComboButton {
+  vertical-align: top;
+}
+#ttrssMain .dijitToolbar .actionChooser .dijitToggleButton,
+#ttrssMain .dijitToolbar .actionChooser .dijitButton,
+#ttrssMain .dijitToolbar .actionChooser .dijitDropDownButton,
+#ttrssMain .dijitToolbar .actionChooser .dijitComboButton {
+  vertical-align: middle;
+}
+#ttrssMain .dijitButton .dijitButtonNode,
+#ttrssMain .dijitDropDownButton .dijitButtonNode,
+#ttrssMain .dijitComboButton .dijitButtonNode,
+#ttrssMain .dijitToggleButton .dijitButtonNode,
+#ttrssMain .dijitSelect,
+#ttrssMain .dijitSelect .dijitButtonContents,
+#ttrssMain .dijitTextBox,
+#ttrssMain .dijitTextBox .dijitButtonNode {
+  padding: 3px 6px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #5e5e5e !important;
+  color: #f4efe2;
+}
+#ttrssMain .dijitButtonHover .dijitButtonNode,
+#ttrssMain .dijitDropDownButtonHover .dijitButtonNode,
+#ttrssMain .dijitToggleButtonHover .dijitButtonNode,
+#ttrssMain .dijitComboButtonHover .dijitButtonNode {
+  border: 0 !important;
+  background: #454545 !important;
+}
+#ttrssMain .dijitSelect,
+#ttrssMain .dijitSelect .dijitButtonContents,
+#ttrssMain .dijitTextBox,
+#ttrssMain .dijitTextBox .dijitButtonNode {
+  padding: 1px 6px !important;
+}
+#ttrssMain .dijitSelect .dijitArrowButton {
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+}
+#ttrssMain .dijitSelectHover {
+  background: #454545 !important;
+}
+#ttrssMain .dijitSelectHover .dijitButtonContents {
+  background: #454545 !important;
+}
+#ttrssMain .dijitSelectHover .dijitArrowButton {
+  border: 0 !important;
+}
+#ttrssMain .dijitSelect .dijitArrowButtonInner,
+#ttrssMain .dijitComboBox .dijitArrowButtonInner,
+#ttrssMain .dijitArrowButtonInner {
+  background: url(paper/arrow-down.png) 50% 50% no-repeat;
+}
+#ttrssMain .dijitSelectHover .dijitArrowButtonInner,
+#ttrssMain .dijitComboBoxHover .dijitArrowButtonInner,
+#ttrssMain .dijitArrowButtonInner {
+  background-position: 50% 50% !important;
+}
+#ttrssMain .dijitMenu {
+  border: 1px solid #5e5e5e;
+  background: #464646;
+}
+#ttrssMain .dijitMenu td.dijitMenuItemLabel {
+  color: #f4efe2;
+  font-size: 14px !important;
+}
+#ttrssMain .dijitSelectMenu .dijitMenuItemHover td,
+#ttrssMain .dijitSelectMenu .dijitMenuItemSelected td,
+#ttrssMain .dijitMenuItemHover,
+#ttrssMain .dijitMenuItemSelected {
+  background-color: #5e5e5e !important;
+  background-image: none !important;
+}
+#ttrssMain .dijitSelectMenu .dijitMenuItemHover td td.dijitMenuItemLabel,
+#ttrssMain .dijitSelectMenu .dijitMenuItemSelected td td.dijitMenuItemLabel,
+#ttrssMain .dijitMenuItemHover td.dijitMenuItemLabel,
+#ttrssMain .dijitMenuItemSelected td.dijitMenuItemLabel {
+  color: #f4efe2;
+}
+#ttrssMain .dijitSelectMenu .dijitMenuItem td,
+#ttrssMain .dijitComboBoxMenu .dijitMenuItem {
+  padding: 5px 6px !important;
+  border: 0 !important;
+}
+#ttrssMain .dijitCheckBox,
+#ttrssMain .dijitCheckBoxIcon {
+  background-image: url(paper/checkboxes.png);
+}
+/* posts */
+
+.hl a,
+div.postReply a,
+div.cdmContent a,
+div.cdm.expandable a {
+  color: #464646;
+  text-decoration: underline;
+}
+.hl a:hover,
+div.postReply a:hover,
+div.cdmContent a:hover,
+div.cdm.expandable a:hover {
+  color: #131313;
+}
+/* labels */
+
+div.cdmHeader div.hlFeed,
+div.cdmHeader div.hlFeed a,
+a.hlFeed {
+  color: #464646 !important;
+  text-decoration: none;
+  text-shadow: none;
+  font-style: normal;
+  font-size: 11px !important;
+}
+/* combined auto expanded */
+
+div.cdm.expanded,
+div.cdm.expandable {
+  position: relative;
+  margin: 6px;
+  border: 1px solid #e4decd;
+  background: #f4efe2 !important;
+}
+div.cdm.expanded > hr,
+div.cdm.expandable > hr {
+  display: none;
+}
+div.cdm.expanded div.cdmHeader,
+div.cdm.expandable div.cdmHeader,
+div.cdm.expanded div.cdmFooter,
+div.cdm.expandable div.cdmFooter {
+  position: relative;
+  background-color: #e4decd !important;
+  color: #464646;
+  text-shadow: 0 1px #f5f1e8;
+}
+div.cdm.expanded div.cdmHeader a,
+div.cdm.expandable div.cdmHeader a,
+div.cdm.expanded div.cdmFooter a,
+div.cdm.expandable div.cdmFooter a {
+  text-decoration: none;
+}
+div.cdm.expanded div.cdmFooter,
+div.cdm.expandable div.cdmFooter {
+  font-weight: normal !important;
+  font-size: 12px !important;
+}
+div.cdm.expanded.active,
+div.cdm.expandable.active {
+  border-color: #d2c8ac;
+  background: #f4efe2 !important;
+}
+div.cdm.expanded.active div.cdmHeader,
+div.cdm.expandable.active div.cdmHeader,
+div.cdm.expanded.active div.cdmFooter,
+div.cdm.expandable.active div.cdmFooter {
+  background-color: #d2c8ac !important;
+}
+div.cdm.expanded.active div.cdmHeader a.title,
+div.cdm.expandable.active div.cdmHeader a.title,
+div.cdm.expanded.active div.cdmFooter a.title,
+div.cdm.expandable.active div.cdmFooter a.title {
+  color: #464646;
+}
+/* combined no auto expand */
+
+div.cdm.expandable,
+.hl {
+  position: relative;
+  margin: 0;
+  border: 1px solid #d2c8ac;
+  border-width: 0 0 1px 0;
+  background-color: #e4decd !important;
+  color: #464646;
+  text-shadow: 0 1px #f5f1e8;
+}
+div.cdm.expandable div.cdmFooter,
+.hl div.cdmFooter {
+  border: 1px solid #d2c8ac;
+  border-width: 1px 0;
+  background-color: #e4decd !important;
+  font-size: 12px !important;
+}
+div.cdm.expandable.active {
+  border-bottom: 0 none;
+}
+/* not combined view */
+
+div.hl.active {
+  border: 1px solid #d2c8ac;
+  border-width: 0 0 1px 0;
+  background-color: #d2c8ac !important;
+}
+div.hl.active div.hlTitle a {
+  text-shadow: none;
+}
+span.contentPreview {
+  color: #5e5e5e;
+  text-shadow: none;
+}
+div.postReply div.postHeader {
+  border: 1px solid #464646;
+  border-width: 5px 0 1px;
+  background-color: #d2c8ac !important;
+  color: #464646;
+}
+div.postReply div.postHeader .postTags {
+  font-size: 12px !important;
+}
+div.postReply div.postDate {
+  font-size: 12px !important;
+}
