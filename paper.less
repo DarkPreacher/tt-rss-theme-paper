@@ -244,7 +244,7 @@ img[src*="images/pub_unset.svg"] {
 			background-color : @c-dark;
 			color            : @c-light;
 			font-size        : 12px;
-			line-height      : 24px;
+			line-height      : 23px;
 
 			&:before {
 				position      : absolute;
@@ -252,7 +252,7 @@ img[src*="images/pub_unset.svg"] {
 				left          : -6px;
 				width         : 0;
 				height        : 0;
-				border-top    : 12px solid rgba(255, 255, 255, 0);
+				border-top    : 11px solid rgba(255, 255, 255, 0);
 				border-right  : 6px solid @c-dark;
 				border-bottom : 12px solid rgba(255, 255, 255, 0);
 				content       : '';
@@ -278,7 +278,9 @@ img[src*="images/pub_unset.svg"] {
 		margin         : 0 8px;
 		color          : @c-dark;
 		vertical-align : text-top;
+		font-weight    : normal !important;
 	}
+
 	.dijitTreeRowSelected .dijitTreeLabel {
 		color       : @c-light;
 		text-shadow : none;
@@ -298,6 +300,7 @@ img[src*="images/pub_unset.svg"] {
 
 		.dijitTreeLabel {
 			color       : @c-light;
+			font-weight : normal !important;
 			line-height : 28px;
 		}
 

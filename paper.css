@@ -217,7 +217,7 @@ img[src*="images/pub_unset.svg"] {
   background-color: #464646;
   color: #f4efe2;
   font-size: 12px;
-  line-height: 24px;
+  line-height: 23px;
 }
 #ttrssMain .dijitTreeRow .counterNode:before,
 #ttrssMain .dijitTreeNode .dojoDndItemBefore .counterNode:before,
@@ -227,7 +227,7 @@ img[src*="images/pub_unset.svg"] {
   left: -6px;
   width: 0;
   height: 0;
-  border-top: 12px solid rgba(255, 255, 255, 0);
+  border-top: 11px solid rgba(255, 255, 255, 0);
   border-right: 6px solid #464646;
   border-bottom: 12px solid rgba(255, 255, 255, 0);
   content: '';
@@ -251,6 +251,7 @@ img[src*="images/pub_unset.svg"] {
   margin: 0 8px;
   color: #464646;
   vertical-align: text-top;
+  font-weight: normal !important;
 }
 #ttrssMain .dijitTreeRowSelected .dijitTreeLabel {
   color: #f4efe2;
@@ -268,6 +269,7 @@ img[src*="images/pub_unset.svg"] {
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .dijitTreeLabel {
   color: #f4efe2;
+  font-weight: normal !important;
   line-height: 28px;
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .counterNode {
