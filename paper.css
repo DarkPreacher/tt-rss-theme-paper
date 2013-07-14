@@ -283,7 +283,8 @@ img[src*="images/pub_unset.svg"] {
   border-bottom-width: 15px;
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .dijitTreeExpando {
-  margin-top: 7px;
+  margin-top: 5px;
+  vertical-align: text-top;
   background-image: url(paper/tree-expand.png);
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .loadingNode {
