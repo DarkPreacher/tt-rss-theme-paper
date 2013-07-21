@@ -19,6 +19,7 @@ http://www.fatcow.com/free-icons
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=latin,cyrillic);
 * {
   font-family: sans-serif !important;
+  text-shadow: none !important;
 }
 body {
   font-size: 16px !important;
@@ -31,7 +32,9 @@ div.postContent p {
 div.cdm.expandable a.title,
 div.postReply div.postTitle a.title,
 div.cdm.active div.cdmHeader a.title,
-div.cdm.expanded div.cdmHeader a.title {
+div.cdm.expanded div.cdmHeader a.title,
+div#floatingTitle a.title {
+  background-color: transparent !important;
   color: #464646 !important;
   text-decoration: none !important;
   font-weight: bold;
@@ -39,6 +42,7 @@ div.cdm.expanded div.cdmHeader a.title {
   font-family: 'Open Sans Condensed', sans-serif !important;
 }
 div.postReply div.postTitle a {
+  background-color: transparent !important;
   color: #464646 !important;
   text-decoration: none !important;
   font-weight: bold;
@@ -46,7 +50,8 @@ div.postReply div.postTitle a {
   font-family: 'Open Sans Condensed', sans-serif !important;
 }
 div.cdmHeader span.author,
-div.postReply div.postTitle span.author {
+div.postReply div.postTitle span.author,
+div#floatingTitle span.author {
   color: #464646;
   font-size: 14px;
   font-family: 'Open Sans Condensed', sans-serif !important;
@@ -96,6 +101,7 @@ div.postReply div.postTitle span.author {
 /* images replace */
 
 img[src*="images/indicator_white.gif"] {
+  top: 0 !important;
   display: inline-block;
   padding-right: 16px;
   width: 0 !important;
@@ -116,12 +122,15 @@ img[src*="images/mark_unset.svg"],
 img[src*="images/pub_set.svg"],
 img[src*="images/pub_unset.svg"],
 img[src*="images/archive.png"],
-img[src*="images/recently_read.png"] {
+img[src*="images/time.png"],
+img[src*="images/page_white_go.png"],
+img[src*="images/folder.png"] {
   padding-right: 16px !important;
   width: 0 !important;
   height: 16px !important;
 }
-img[src*="images/tag.png"] {
+img[src*="images/tag.png"],
+img[src*="images/folder.png"] {
   background: transparent url(paper/icon-asterisk.png) 50% 50% no-repeat !important;
 }
 img[src*="images/fresh.png"] {
@@ -138,16 +147,22 @@ img[src*="images/pub_unset.svg"] {
 img[src*="images/archive.png"] {
   background: transparent url(paper/icon-package.png) 50% 50% no-repeat !important;
 }
-img[src*="images/recently_read.png"] {
+img[src*="images/time.png"] {
   background: transparent url(paper/icon-time.png) 50% 50% no-repeat !important;
 }
+img[src*="images/page_white_go.png"] {
+  background: transparent url(paper/article-go.png) 50% 50% no-repeat !important;
+}
 img[src*="images/mark_unset.svg"],
-img[src*="images/pub_unset.svg"] {
+img[src*="images/pub_unset.svg"],
+img[src*="images/page_white_go.png"] {
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
   /* Firefox 10+, Firefox on Android */
   filter: gray;
   /* IE6-9 */
-  -webkit-filter: grayscale(100%);
+
+  /*!!!-webkit-filter: ~"grayscale(100%)";*/
+
   /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 
 }
@@ -164,12 +179,19 @@ img[src*="images/pub_unset.svg"] {
 }
 /* all sort of styles */
 
+.dijitIconFolderOpen,
+.dijitFolderOpened,
+.dijitIconFolderClosed,
+.dijitFolderClosed {
+  display: none;
+}
 #ttrssMain .dijitSplitContainer-dijitContentPane,
 #ttrssMain .dijitBorderContainer-dijitContentPane {
   background-color: #f5f1e8;
 }
 #ttrssMain #feeds-holder,
 #ttrssMain #content-wrap {
+  padding: 0;
   border: 0 !important;
 }
 #ttrssMain .dijitSplitterV,
@@ -192,6 +214,7 @@ img[src*="images/pub_unset.svg"] {
   color: #464646;
   font-size: 12px;
   line-height: 20px;
+  height: auto !important;
 }
 #ttrssMain .dijitTreeRowHover,
 #ttrssMain .dijitTreeNode .dojoDndItemBeforeHover,
@@ -208,10 +231,13 @@ img[src*="images/pub_unset.svg"] {
 #ttrssMain .dijitTreeRow .counterNode,
 #ttrssMain .dijitTreeNode .dojoDndItemBefore .counterNode,
 #ttrssMain .dijitTreeNode .dojoDndItemAfter .counterNode {
+  position: relative;
   top: 0;
-  margin-right: 0;
+  float: right;
+  margin: 0;
   padding: 0 4px;
   min-width: 0;
+  height: auto;
   border: 0;
   border-radius: 0;
   background-color: #464646;
@@ -255,10 +281,10 @@ img[src*="images/pub_unset.svg"] {
 }
 #ttrssMain .dijitTreeRowSelected .dijitTreeLabel {
   color: #f4efe2;
-  text-shadow: none;
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow {
   display: block;
+  height: auto !important;
   background-color: #464646;
   color: #f4efe2;
   font-size: 14px;
@@ -283,7 +309,7 @@ img[src*="images/pub_unset.svg"] {
   border-bottom-width: 15px;
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .dijitTreeExpando {
-  margin-top: 5px;
+  margin-top: 5px !important;
   vertical-align: text-top;
   background-image: url(paper/tree-expand.png);
 }
@@ -297,35 +323,49 @@ img[src*="images/pub_unset.svg"] {
   /* Firefox 10+, Firefox on Android */
   filter: gray;
   /* IE6-9 */
-  -webkit-filter: grayscale(100%);
+
+  /*!!!-webkit-filter: ~"grayscale(100%)";*/
+
   /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 
+}
+#ttrssMain #feedTree img.feedIcon {
+  top: 0;
 }
 #ttrssMain #feedTree .dijitTreeRowHover img.feedIcon,
 #ttrssMain #feedTree .dijitTreeRowHover img.tinyFeedIcon,
 #ttrssMain #feedTree .dijitTreeRowSelected img.feedIcon,
 #ttrssMain #feedTree .dijitTreeRowSelected img.tinyFeedIcon {
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-  -webkit-filter: grayscale(0%);
+  /*!!!-webkit-filter: ~"grayscale(0%)";*/
+
 }
 #ttrssMain .dijitInline[style*="padding-left: 19px"] {
   padding-left: 12px !important;
 }
 #ttrssMain div#headlines-toolbar,
 #ttrssMain .dijitToolbar {
-  padding: 6px 0 2px 4px;
-  border: 0 !important;
+  padding: 4px 4px 2px;
+  border-bottom: 1px solid #464646;
   background: #464646;
   color: #f4efe2;
-  text-shadow: none;
+  font-size: 12px;
 }
 #ttrssMain div#headlines-toolbar a,
 #ttrssMain .dijitToolbar a {
   color: #f4efe2 !important;
+  text-decoration: none;
 }
 #ttrssMain div#headlines-toolbar a:hover,
 #ttrssMain .dijitToolbar a:hover {
+  border-bottom: 1px dotted;
   color: #f5f1e8 !important;
+  text-decoration: none;
+}
+#ttrssMain div#headlines-toolbar .r,
+#ttrssMain .dijitToolbar .r {
+  float: right;
+  line-height: 2;
 }
 #ttrssMain .dijitSplitContainer-child,
 #ttrssMain .dijitBorderContainer-child {
@@ -333,11 +373,16 @@ img[src*="images/pub_unset.svg"] {
   border: 0 !important;
 }
 #ttrssMain #toolbar {
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
   background: #464646;
+  white-space: nowrap;
+  font-size: 12px;
 }
 #ttrssMain .dijitSplitterH,
 #ttrssMain .dijitGutterH {
-  height: 1px;
+  display: none;
 }
 #ttrssMain #main_toolbar_form {
   float: left;
@@ -445,13 +490,17 @@ img[src*="images/pub_unset.svg"] {
 div.postReply a,
 div.cdmContent a,
 div.cdm.expandable a {
+  padding: 0 2px;
+  border-radius: 2px;
+  background-color: #e4decd;
   color: #464646;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .hl a:hover,
 div.postReply a:hover,
 div.cdmContent a:hover,
 div.cdm.expandable a:hover {
+  background-color: #d2c8ac;
   color: #131313;
 }
 /* labels */
@@ -461,7 +510,6 @@ div.cdmHeader div.hlFeed a,
 a.hlFeed {
   color: #464646 !important;
   text-decoration: none;
-  text-shadow: none;
   font-style: normal;
   font-size: 11px !important;
 }
@@ -485,7 +533,6 @@ div.cdm.expandable div.cdmFooter {
   position: relative;
   background-color: #e4decd !important;
   color: #464646;
-  text-shadow: 0 1px #f5f1e8;
 }
 div.cdm.expanded div.cdmHeader a,
 div.cdm.expandable div.cdmHeader a,
@@ -525,7 +572,6 @@ div.cdm.expandable,
   border-width: 0 0 1px 0;
   background-color: #e4decd !important;
   color: #464646;
-  text-shadow: 0 1px #f5f1e8;
 }
 div.cdm.expandable div.cdmFooter,
 .hl div.cdmFooter {
@@ -544,12 +590,8 @@ div.hl.active {
   border-width: 0 0 1px 0;
   background-color: #d2c8ac !important;
 }
-div.hl.active div.hlTitle a {
-  text-shadow: none;
-}
 span.contentPreview {
   color: #5e5e5e;
-  text-shadow: none;
 }
 div.postReply div.postHeader {
   border: 1px solid #464646;
@@ -562,4 +604,13 @@ div.postReply div.postHeader .postTags {
 }
 div.postReply div.postDate {
   font-size: 12px !important;
+}
+/* floating title */
+
+div#floatingTitle {
+  top: 30px;
+  box-shadow: none;
+  background-color: #d2c8ac;
+  border-color: #464646;
+  border-bottom-width: 5px;
 }

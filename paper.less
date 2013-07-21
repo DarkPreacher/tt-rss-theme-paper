@@ -27,6 +27,7 @@ http://www.fatcow.com/free-icons
 
 * {
 	font-family: sans-serif !important;
+	text-shadow: none !important;
 }
 
 body {
@@ -44,26 +45,30 @@ div.postContent {
 div.cdm.expandable,
 div.postReply div.postTitle,
 div.cdm.active div.cdmHeader,
-div.cdm.expanded div.cdmHeader {
+div.cdm.expanded div.cdmHeader,
+div#floatingTitle {
 	a.title {
-		color           : @c-dark !important;
-		text-decoration : none !important;
-		font-weight     : bold;
-		font-size       : 18px !important;
-		font-family     : 'Open Sans Condensed', sans-serif !important;
+		background-color : transparent !important;
+		color            : @c-dark !important;
+		text-decoration  : none !important;
+		font-weight      : bold;
+		font-size        : 18px !important;
+		font-family      : 'Open Sans Condensed', sans-serif !important;
 	}
 }
 
 div.postReply div.postTitle a {
-	color           : @c-dark !important;
-	text-decoration : none !important;
-	font-weight     : bold;
-	font-size       : 18px !important;
-	font-family     : 'Open Sans Condensed', sans-serif !important;
+	background-color : transparent !important;
+	color            : @c-dark !important;
+	text-decoration  : none !important;
+	font-weight      : bold;
+	font-size        : 18px !important;
+	font-family      : 'Open Sans Condensed', sans-serif !important;
 }
 
 div.cdmHeader,
-div.postReply div.postTitle {
+div.postReply div.postTitle,
+div#floatingTitle {
 	span.author {
 		color       : @c-dark;
 		font-size   : 14px;
@@ -122,6 +127,7 @@ div.postReply div.postTitle {
 
 /* images replace */
 img[src*="images/indicator_white.gif"] {
+	top           : 0 !important;
 	display       : inline-block;
 	padding-right : 16px;
 	width         : 0 !important;
@@ -142,12 +148,15 @@ img[src*="images/mark_unset.svg"],
 img[src*="images/pub_set.svg"],
 img[src*="images/pub_unset.svg"],
 img[src*="images/archive.png"],
-img[src*="images/recently_read.png"] {
+img[src*="images/time.png"],
+img[src*="images/page_white_go.png"],
+img[src*="images/folder.png"] {
 	padding-right : 16px !important;
 	width         : 0 !important;
 	height        : 16px !important;
 }
-img[src*="images/tag.png"] {
+img[src*="images/tag.png"],
+img[src*="images/folder.png"] {
 	background: transparent url(paper/icon-asterisk.png) 50% 50% no-repeat !important;
 }
 img[src*="images/fresh.png"] {
@@ -164,14 +173,18 @@ img[src*="images/pub_unset.svg"] {
 img[src*="images/archive.png"] {
 	background: transparent url(paper/icon-package.png) 50% 50% no-repeat !important;
 }
-img[src*="images/recently_read.png"] {
+img[src*="images/time.png"] {
 	background: transparent url(paper/icon-time.png) 50% 50% no-repeat !important;
 }
+img[src*="images/page_white_go.png"] {
+	background: transparent url(paper/article-go.png) 50% 50% no-repeat !important;
+}
 img[src*="images/mark_unset.svg"],
-img[src*="images/pub_unset.svg"] {
+img[src*="images/pub_unset.svg"],
+img[src*="images/page_white_go.png"] {
 	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
 	filter: gray; /* IE6-9 */
-	-webkit-filter: ~"grayscale(100%)"; /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+	/*!!!-webkit-filter: ~"grayscale(100%)";*/ /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 }
 
 #collapse_feeds_btn {
@@ -187,6 +200,13 @@ img[src*="images/pub_unset.svg"] {
 }
 
 /* all sort of styles */
+.dijitIconFolderOpen,
+.dijitFolderOpened,
+.dijitIconFolderClosed,
+.dijitFolderClosed {
+	display: none;
+}
+
 #ttrssMain {
 
 	.dijitSplitContainer-dijitContentPane,
@@ -196,7 +216,8 @@ img[src*="images/pub_unset.svg"] {
 
 	#feeds-holder,
 	#content-wrap {
-		border: 0 !important;
+		padding : 0;
+		border  : 0 !important;
 	}
 
 	.dijitSplitterV,
@@ -223,6 +244,7 @@ img[src*="images/pub_unset.svg"] {
 		color            : @c-dark;
 		font-size        : 12px;
 		line-height      : 20px;
+		height: auto !important;
 
 		&Hover {
 			background-color : @c-dark-mild;
@@ -235,10 +257,13 @@ img[src*="images/pub_unset.svg"] {
 		}
 
 		.counterNode {
+			position         : relative;
 			top              : 0;
-			margin-right     : 0;
+			float            : right;
+			margin           : 0;
 			padding          : 0 4px;
 			min-width        : 0;
+			height           : auto;
 			border           : 0;
 			border-radius    : 0;
 			background-color : @c-dark;
@@ -283,12 +308,12 @@ img[src*="images/pub_unset.svg"] {
 
 	.dijitTreeRowSelected .dijitTreeLabel {
 		color       : @c-light;
-		text-shadow : none;
 	}
 
 /* roots */
 	.dijitTreeIsRoot > .dijitTreeRow {
 		display          : block;
+		height           : auto !important;
 		background-color : @c-dark;
 		color            : @c-light;
 		font-size        : 14px;
@@ -317,7 +342,7 @@ img[src*="images/pub_unset.svg"] {
 		}
 
 		.dijitTreeExpando {
-			margin-top       : 5px;
+			margin-top       : 5px !important;
 			vertical-align   : text-top;
 			background-image : url(paper/tree-expand.png);
 		}
@@ -334,7 +359,11 @@ img[src*="images/pub_unset.svg"] {
 		img.tinyFeedIcon {
 			filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
 			filter: gray; /* IE6-9 */
-			-webkit-filter: ~"grayscale(100%)"; /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+			/*!!!-webkit-filter: ~"grayscale(100%)";*/ /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+		}
+
+		img.feedIcon {
+			top: 0;
 		}
 
 		.dijitTreeRowHover img.feedIcon,
@@ -342,7 +371,7 @@ img[src*="images/pub_unset.svg"] {
 		.dijitTreeRowSelected img.feedIcon,
 		.dijitTreeRowSelected img.tinyFeedIcon {
 			filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-			-webkit-filter: ~"grayscale(0%)";
+			/*!!!-webkit-filter: ~"grayscale(0%)";*/
 		}
 	}
 
@@ -354,18 +383,26 @@ img[src*="images/pub_unset.svg"] {
 /* top part */
 	div#headlines-toolbar,
 	.dijitToolbar {
-		padding     : 6px 0 2px 4px;
-		border      : 0 !important;
-		background  : @c-dark;
-		color       : @c-light;
-		text-shadow : none;
+		padding       : 4px 4px 2px;
+		border-bottom : 1px solid @c-dark;
+		background    : @c-dark;
+		color         : @c-light;
+		font-size     : 12px;
 
 		a {
-			color: @c-light !important;
+			color           : @c-light !important;
+			text-decoration : none;
 
 			&:hover {
-				color: @c-lighter !important;
+				border-bottom   : 1px dotted;
+				color           : @c-lighter !important;
+				text-decoration : none;
 			}
+		}
+
+		.r {
+			float       : right;
+			line-height : 2;
 		}
 	}
 	.dijitSplitContainer-child,
@@ -375,12 +412,17 @@ img[src*="images/pub_unset.svg"] {
 	}
 
 	#toolbar{
-		background: @c-dark;
+		margin       : 0px;
+		padding      : 0px;
+		border-width : 0px;
+		background   : @c-dark;
+		white-space  : nowrap;
+		font-size    : 12px;
 	}
 
 	.dijitSplitterH,
 	.dijitGutterH {
-		height: 1px;
+		display: none;
 	}
 
 	#main_toolbar_form {
@@ -512,11 +554,15 @@ div.postReply,
 div.cdmContent,
 div.cdm.expandable {
 	a {
-		color           : @c-dark;
-		text-decoration : underline;
+		padding          : 0 2px;
+		border-radius    : 2px;
+		background-color : @c-cream;
+		color            : @c-dark;
+		text-decoration  : none;
 
 		&:hover {
-			color: darken(@c-dark, 20%);
+			background-color : @c-cream-dark;
+			color            : darken(@c-dark, 20%);
 		}
 	}
 }
@@ -527,7 +573,6 @@ div.cdmHeader div.hlFeed a,
 a.hlFeed {
 	color           : @c-dark !important;
 	text-decoration : none;
-	text-shadow     : none;
 	font-style      : normal;
 	font-size       : 11px !important;
 }
@@ -549,7 +594,6 @@ div.cdm.expandable {
 		position         : relative;
 		background-color : @c-cream !important;
 		color            : @c-dark;
-		text-shadow      : 0 1px @c-lighter;
 
 		a {
 			text-decoration: none;
@@ -586,7 +630,6 @@ div.cdm.expandable,
 	border-width     : 0 0 1px 0;
 	background-color : @c-cream !important;
 	color            : @c-dark;
-	text-shadow      : 0 1px @c-lighter;
 
 	div.cdmFooter {
 		border           : 1px solid @c-cream-dark;
@@ -605,15 +648,10 @@ div.hl.active {
 	border           : 1px solid @c-cream-dark;
 	border-width     : 0 0 1px 0;
 	background-color : @c-cream-dark !important;
-
-	div.hlTitle a {
-		text-shadow: none;
-	}
 }
 
 span.contentPreview {
-	color       : @c-dark-mild;
-	text-shadow : none;
+	color : @c-dark-mild;
 }
 
 div.postReply {
@@ -633,4 +671,17 @@ div.postReply {
 		font-size: 12px !important;
 	}
 
+}
+
+/* floating title */
+div#floatingTitle {
+	top: 30px;
+	box-shadow: none;
+	background-color: @c-cream-dark;
+	border-color: @c-dark;
+	border-bottom-width: 5px;
+
+	span.titleWrap {
+
+	}
 }
