@@ -1,4 +1,4 @@
-Tiny Tiny RSS Paper Theme, v. 0.1
+Tiny Tiny RSS Paper Theme, v. 0.2
 =================================
 
 Paper theme for [Tiny Tiny RSS](http://tt-rss.org/redmine/projects/tt-rss/wiki), will be updated to be compatible with latest release.
