@@ -1,9 +1,9 @@
-/*
+/*! supports-version:1.15.3
 Tiny Tiny RSS Paper Theme
 Author: Dark Preacher
 Email: dark[at]darklab.ru
-Version: 0.1.0
-Date: 2013.07.12
+Version: 0.2.4
+Date: 2015.03.18
 
 Some icons are created by FatCow Web Hosting.
 These icons are licensed under a Creative Commons Attribution 3.0 License.
@@ -14,6 +14,7 @@ http://www.fatcow.com/free-icons
 */
 
 @import "../css/tt-rss.css";
+@import "../css/dijit.css";
 @import "../css/cdm.css";
 @import "../css/prefs.css";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=latin,cyrillic);
@@ -41,7 +42,8 @@ div#floatingTitle a.title {
   font-size: 18px !important;
   font-family: 'Open Sans Condensed', sans-serif !important;
 }
-div.postReply div.postTitle a {
+div.postReply div.postTitle a,
+div.cdmHeader span.updated {
   background-color: transparent !important;
   color: #464646 !important;
   text-decoration: none !important;
@@ -106,67 +108,68 @@ img[src*="images/indicator_white.gif"] {
   padding-right: 16px;
   width: 0 !important;
   height: 16px !important;
-  background: transparent url(paper/loader-circular.gif) 50% 100% no-repeat !important;
+  background: transparent url("paper/loader-circular.gif") 50% 100% no-repeat !important;
 }
 img[src*="images/indicator_tiny.gif"] {
   display: inline-block;
   padding-right: 16px;
   width: 0 !important;
   height: 11px !important;
-  background: transparent url(paper/loader-bars.gif) 50% 100% no-repeat !important;
+  background: transparent url("paper/loader-bars.gif") 50% 100% no-repeat !important;
 }
 img[src*="images/tag.png"],
 img[src*="images/fresh.png"],
 img[src*="images/mark_set.svg"],
 img[src*="images/mark_unset.svg"],
-img[src*="images/pub_set.svg"],
-img[src*="images/pub_unset.svg"],
+img[src*="images/pub_set.png"],
+img[src*="images/pub_unset.png"],
 img[src*="images/archive.png"],
 img[src*="images/time.png"],
 img[src*="images/page_white_go.png"],
-img[src*="images/folder.png"] {
+img[src*="images/folder.png"],
+img[src*="images/error.png"] {
   padding-right: 16px !important;
   width: 0 !important;
   height: 16px !important;
 }
 img[src*="images/tag.png"],
 img[src*="images/folder.png"] {
-  background: transparent url(paper/icon-asterisk.png) 50% 50% no-repeat !important;
+  background: transparent url("paper/icon-asterisk.png") 50% 50% no-repeat !important;
 }
 img[src*="images/fresh.png"] {
-  background: transparent url(paper/icon-new.png) 50% 50% no-repeat !important;
+  background: transparent url("paper/icon-new.png") 50% 50% no-repeat !important;
 }
 img[src*="images/mark_set.svg"],
 img[src*="images/mark_unset.svg"] {
-  background: transparent url(paper/icon-star.png) 50% 50% no-repeat !important;
+  background: transparent url("paper/icon-star.png") 50% 50% no-repeat !important;
 }
-img[src*="images/pub_set.svg"],
-img[src*="images/pub_unset.svg"] {
-  background: transparent url(paper/icon-rss.png) 50% 50% no-repeat !important;
+img[src*="images/pub_set.png"],
+img[src*="images/pub_unset.png"] {
+  background: transparent url("paper/icon-rss.png") 50% 50% no-repeat !important;
 }
 img[src*="images/archive.png"] {
-  background: transparent url(paper/icon-package.png) 50% 50% no-repeat !important;
+  background: transparent url("paper/icon-package.png") 50% 50% no-repeat !important;
+  background-size: 16px auto !important;
 }
 img[src*="images/time.png"] {
-  background: transparent url(paper/icon-time.png) 50% 50% no-repeat !important;
+  background: transparent url("paper/icon-time.png") 50% 50% no-repeat !important;
 }
 img[src*="images/page_white_go.png"] {
-  background: transparent url(paper/article-go.png) 50% 50% no-repeat !important;
+  background: transparent url("paper/article-go.png") 50% 50% no-repeat !important;
+}
+img[src*="images/error.png"] {
+  background: transparent url("paper/error.png") 50% 50% no-repeat !important;
 }
 img[src*="images/mark_unset.svg"],
-img[src*="images/pub_unset.svg"],
+img[src*="images/pub_unset.png"],
 img[src*="images/page_white_go.png"] {
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-  /* Firefox 10+, Firefox on Android */
   filter: gray;
-  /* IE6-9 */
   -webkit-filter: grayscale(100%);
-  /* Chrome 19+, Safari 6+, Safari 6+ iOS */
-
 }
 #collapse_feeds_btn {
   padding: 1px 0 1px 15px;
-  background: url(paper/collapse-sidebar.png) 50% 50% no-repeat;
+  background: url("paper/collapse-sidebar.png") 50% 50% no-repeat;
   text-indent: -999em;
 }
 /* sidebar */
@@ -183,6 +186,16 @@ img[src*="images/page_white_go.png"] {
 .dijitFolderClosed {
   display: none;
 }
+#headlines-spacer a,
+#headlines-spacer span,
+.insensitive {
+  color: #464646;
+}
+#headlines-spacer a:hover,
+#headlines-spacer span:hover,
+.insensitive:hover {
+  color: #606060;
+}
 #ttrssMain .dijitSplitContainer-dijitContentPane,
 #ttrssMain .dijitBorderContainer-dijitContentPane {
   background-color: #f5f1e8;
@@ -191,6 +204,13 @@ img[src*="images/page_white_go.png"] {
 #ttrssMain #content-wrap {
   padding: 0;
   border: 0 !important;
+}
+#ttrssMain #feeds-holder:before {
+  position: relative;
+  display: block;
+  height: 32px;
+  background-color: #e4decd;
+  content: '';
 }
 #ttrssMain .dijitSplitterV,
 #ttrssMain .dijitGutterV {
@@ -207,12 +227,17 @@ img[src*="images/page_white_go.png"] {
 #ttrssMain .dijitTreeNode .dojoDndItemAfter {
   display: block;
   padding: 1px 0 !important;
+  height: auto !important;
   border: 0 none !important;
   background-color: #f4efe2;
   color: #464646;
   font-size: 12px;
   line-height: 20px;
-  height: auto !important;
+}
+#ttrssMain .dijitTreeRow.Error .dijitTreeLabel,
+#ttrssMain .dijitTreeNode .dojoDndItemBefore.Error .dijitTreeLabel,
+#ttrssMain .dijitTreeNode .dojoDndItemAfter.Error .dijitTreeLabel {
+  color: #991818;
 }
 #ttrssMain .dijitTreeRowHover,
 #ttrssMain .dijitTreeNode .dojoDndItemBeforeHover,
@@ -224,7 +249,7 @@ img[src*="images/page_white_go.png"] {
 #ttrssMain .dijitTreeRowHover .dijitTreeLabel,
 #ttrssMain .dijitTreeNode .dojoDndItemBeforeHover .dijitTreeLabel,
 #ttrssMain .dijitTreeNode .dojoDndItemAfterHover .dijitTreeLabel {
-  color: #f4efe2;
+  color: #f4efe2 !important;
 }
 #ttrssMain .dijitTreeRow .counterNode,
 #ttrssMain .dijitTreeNode .dojoDndItemBefore .counterNode,
@@ -232,16 +257,16 @@ img[src*="images/page_white_go.png"] {
   position: relative;
   top: 0;
   float: right;
-  margin: 0;
+  margin: 0 !important;
   padding: 0 4px;
-  min-width: 0;
-  height: auto;
-  border: 0;
-  border-radius: 0;
-  background-color: #464646;
+  min-width: 0 !important;
+  height: auto !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background-color: #464646 !important;
   color: #f4efe2;
-  font-size: 12px;
-  line-height: 23px;
+  font-size: 12px !important;
+  line-height: 23px !important;
 }
 #ttrssMain .dijitTreeRow .counterNode:before,
 #ttrssMain .dijitTreeNode .dojoDndItemBefore .counterNode:before,
@@ -277,7 +302,8 @@ img[src*="images/page_white_go.png"] {
   vertical-align: text-top;
   font-weight: normal !important;
 }
-#ttrssMain .dijitTreeRowSelected .dijitTreeLabel {
+#ttrssMain .dijitTreeRowSelected .dijitTreeLabel,
+#ttrssMain .dijitTreeRowSelected.Error .dijitTreeLabel {
   color: #f4efe2;
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow {
@@ -292,14 +318,16 @@ img[src*="images/page_white_go.png"] {
   background-color: #2d2d2d;
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .dijitTreeLabel {
+  position: relative;
+  top: -2px;
   color: #f4efe2;
   font-weight: normal !important;
   line-height: 28px;
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .counterNode {
-  background-color: #f4efe2;
-  color: #464646;
-  line-height: 30px;
+  background-color: #f4efe2 !important;
+  color: #464646 !important;
+  line-height: 30px !important;
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .counterNode:before {
   border-top-width: 15px;
@@ -309,7 +337,7 @@ img[src*="images/page_white_go.png"] {
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .dijitTreeExpando {
   margin-top: 5px !important;
   vertical-align: text-top;
-  background-image: url(paper/tree-expand.png);
+  background-image: url("paper/tree-expand.png");
 }
 #ttrssMain .dijitTreeIsRoot > .dijitTreeRow .loadingNode {
   margin-top: 6px;
@@ -318,12 +346,8 @@ img[src*="images/page_white_go.png"] {
 #ttrssMain #feedTree img.feedIcon,
 #ttrssMain #feedTree img.tinyFeedIcon {
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-  /* Firefox 10+, Firefox on Android */
   filter: gray;
-  /* IE6-9 */
   -webkit-filter: grayscale(100%);
-  /* Chrome 19+, Safari 6+, Safari 6+ iOS */
-
 }
 #ttrssMain #feedTree img.feedIcon {
   top: 0;
@@ -348,13 +372,13 @@ img[src*="images/page_white_go.png"] {
 }
 #ttrssMain div#headlines-toolbar a,
 #ttrssMain .dijitToolbar a {
-  color: #f4efe2 !important;
+  color: #f4efe2;
   text-decoration: none;
 }
 #ttrssMain div#headlines-toolbar a:hover,
 #ttrssMain .dijitToolbar a:hover {
   border-bottom: 1px dotted;
-  color: #f5f1e8 !important;
+  color: #f5f1e8;
   text-decoration: none;
 }
 #ttrssMain div#headlines-toolbar .r,
@@ -386,10 +410,57 @@ img[src*="images/page_white_go.png"] {
 #ttrssMain .actionChooser {
   float: right;
 }
+#ttrssMain #feed_title {
+  position: fixed;
+  top: 0;
+  left: 24px;
+  z-index: 1;
+  overflow: hidden;
+  max-width: 240px;
+  color: #464646;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  line-height: 32px;
+}
+#ttrssMain #feed_title a {
+  color: inherit !important;
+  font-family: inherit !important;
+}
+#ttrssMain #feed_title a:hover {
+  border: 0 !important;
+  color: #5e5e5e !important;
+}
+#ttrssMain #feed_title.error {
+  color: #991818;
+}
+#ttrssMain #feed_title.error img[src*="images/error.png"] {
+  top: 0;
+}
+#ttrssMain #headlines-toolbar .r > a:first-child {
+  position: fixed;
+  top: 6px;
+  left: 4px;
+  z-index: 1;
+}
+#ttrssMain #headlines-toolbar .r > a:first-child img {
+  background-image: url("paper/icon-rss-dark.png") !important;
+}
+#ttrssMain #selected_prompt {
+  padding: 5px 10px 0 0;
+  color: #f4efe2;
+  white-space: nowrap;
+  font-style: normal;
+  line-height: 1.8;
+}
 #ttrssMain .dijitToolbar .dijitToggleButton,
 #ttrssMain .dijitToolbar .dijitButton,
 #ttrssMain .dijitToolbar .dijitDropDownButton,
 #ttrssMain .dijitToolbar .dijitComboButton {
+  border: 0;
   vertical-align: top;
 }
 #ttrssMain .dijitToolbar .actionChooser .dijitToggleButton,
@@ -442,7 +513,7 @@ img[src*="images/page_white_go.png"] {
 #ttrssMain .dijitSelect .dijitArrowButtonInner,
 #ttrssMain .dijitComboBox .dijitArrowButtonInner,
 #ttrssMain .dijitArrowButtonInner {
-  background: url(paper/arrow-down.png) 50% 50% no-repeat;
+  background: url("paper/arrow-down.png") 50% 50% no-repeat;
 }
 #ttrssMain .dijitSelectHover .dijitArrowButtonInner,
 #ttrssMain .dijitComboBoxHover .dijitArrowButtonInner,
@@ -461,23 +532,19 @@ img[src*="images/page_white_go.png"] {
 #ttrssMain .dijitSelectMenu .dijitMenuItemSelected td,
 #ttrssMain .dijitMenuItemHover,
 #ttrssMain .dijitMenuItemSelected {
-  background-color: #5e5e5e !important;
-  background-image: none !important;
+  background: #5e5e5e !important;
 }
 #ttrssMain .dijitSelectMenu .dijitMenuItemHover td td.dijitMenuItemLabel,
 #ttrssMain .dijitSelectMenu .dijitMenuItemSelected td td.dijitMenuItemLabel,
 #ttrssMain .dijitMenuItemHover td.dijitMenuItemLabel,
 #ttrssMain .dijitMenuItemSelected td.dijitMenuItemLabel {
+  background: #5e5e5e;
   color: #f4efe2;
 }
 #ttrssMain .dijitSelectMenu .dijitMenuItem td,
 #ttrssMain .dijitComboBoxMenu .dijitMenuItem {
   padding: 5px 6px !important;
   border: 0 !important;
-}
-#ttrssMain .dijitCheckBox,
-#ttrssMain .dijitCheckBoxIcon {
-  background-image: url(paper/checkboxes.png);
 }
 /* posts */
 
@@ -589,6 +656,7 @@ span.contentPreview {
   color: #5e5e5e;
 }
 div.postReply div.postHeader {
+  margin-right: 0;
   border: 1px solid #464646;
   border-width: 5px 0 1px;
   background-color: #d2c8ac !important;
@@ -603,9 +671,102 @@ div.postReply div.postDate {
 /* floating title */
 
 div#floatingTitle {
-  top: 30px;
-  box-shadow: none;
-  background-color: #d2c8ac;
+  top: 0;
   border-color: #464646;
   border-bottom-width: 5px;
+  background-color: #d2c8ac;
+  box-shadow: none;
+}
+#main-toolbar {
+  height: 25px;
+}
+#main-toolbar #headlines-toolbar {
+  float: left;
+  padding-bottom: 4px;
+  width: auto;
+}
+/* tooltip */
+
+.claro .dijitTooltipContainer {
+  border: 1px solid #464646;
+  border-radius: 2px;
+  background: #f4efe2;
+  box-shadow: none;
+  color: #464646;
+  font-size: 12px;
+}
+.claro .dijitTooltipConnector {
+  background-image: url("paper/tooltip.png");
+}
+/* forms */
+
+.claro .dijitDialogUnderlay {
+  background-color: #464646;
+  opacity: .8;
+}
+.claro .dijitDialog {
+  border-color: #464646;
+  background-color: #f4efe2;
+}
+.claro .dijitDialog .dijitInputInner {
+  color: white !important;
+}
+.claro .dijitDialog button,
+.claro .dijitDialog input[type="submit"],
+.claro .dijitDialog .dijitButton,
+.claro .dijitDialog .dijitComboButton {
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  background-color: #5e5e5e;
+  box-shadow: none;
+  color: #f4efe2;
+}
+.claro .dijitDialog button:hover,
+.claro .dijitDialog input[type="submit"]:hover,
+.claro .dijitDialog .dijitButton:hover,
+.claro .dijitDialog .dijitComboButton:hover {
+  background-color: #464646;
+}
+.claro .dijitDialog button:active,
+.claro .dijitDialog input[type="submit"]:active,
+.claro .dijitDialog .dijitButton:active,
+.claro .dijitDialog .dijitComboButton:active {
+  background-color: #5e5e5e;
+}
+.claro .dijitDialogTitleBar {
+  border: 0;
+  background: transparent;
+  background-color: #464646;
+}
+.claro .dijitDialogTitle {
+  color: #f4efe2;
+}
+.claro .dijitDialogPaneContent {
+  background-color: transparent;
+}
+.claro .dijitTextBoxFocused .dijitInputContainer {
+  background-color: #5e5e5e;
+}
+.claro .dijitButtonNode {
+  transition: none;
+}
+.claro .dijitDialogCloseIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  background: transparent;
+  background-color: #5e5e5e;
+}
+.claro .dijitDialogCloseIcon:after {
+  display: block;
+  width: 20px;
+  color: #f4efe2;
+  content: '×';
+  text-align: center;
+  font-size: 18px;
+  line-height: 20px;
+}
+.claro .dijitDialogCloseIconHover {
+  background-color: #2d2d2d;
 }

@@ -1,9 +1,9 @@
-/*
+/*! supports-version:1.15.3
 Tiny Tiny RSS Paper Theme
 Author: Dark Preacher
 Email: dark[at]darklab.ru
-Version: 0.1.0
-Date: 2013.07.12
+Version: 0.2.4
+Date: 2015.03.18
 
 Some icons are created by FatCow Web Hosting.
 These icons are licensed under a Creative Commons Attribution 3.0 License.
@@ -14,16 +14,19 @@ http://www.fatcow.com/free-icons
 */
 
 @import "../css/tt-rss.css";
+@import "../css/dijit.css";
 @import "../css/cdm.css";
 @import "../css/prefs.css";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=latin,cyrillic);
 
+@img          : 'paper';
 @c-light      : #f4efe2;
 @c-lighter    : #f5f1e8;
 @c-dark       : #464646;
 @c-dark-mild  : #5e5e5e;
 @c-cream      : #e4decd;
 @c-cream-dark : darken(@c-cream, 10%);
+@c-sexy-red   : #991818;
 
 * {
 	font-family: sans-serif !important;
@@ -57,7 +60,8 @@ div#floatingTitle {
 	}
 }
 
-div.postReply div.postTitle a {
+div.postReply div.postTitle a,
+div.cdmHeader span.updated {
 	background-color : transparent !important;
 	color            : @c-dark !important;
 	text-decoration  : none !important;
@@ -132,64 +136,77 @@ img[src*="images/indicator_white.gif"] {
 	padding-right : 16px;
 	width         : 0 !important;
 	height        : 16px !important;
-	background    : transparent url(paper/loader-circular.gif) 50% 100% no-repeat !important;
+	background    : transparent url("@{img}/loader-circular.gif") 50% 100% no-repeat !important;
 }
 img[src*="images/indicator_tiny.gif"] {
 	display       : inline-block;
 	padding-right : 16px;
 	width         : 0 !important;
 	height        : 11px !important;
-	background    : transparent url(paper/loader-bars.gif) 50% 100% no-repeat !important;
+	background    : transparent url("@{img}/loader-bars.gif") 50% 100% no-repeat !important;
 }
 img[src*="images/tag.png"],
 img[src*="images/fresh.png"],
 img[src*="images/mark_set.svg"],
 img[src*="images/mark_unset.svg"],
-img[src*="images/pub_set.svg"],
-img[src*="images/pub_unset.svg"],
+img[src*="images/pub_set.png"],
+img[src*="images/pub_unset.png"],
 img[src*="images/archive.png"],
 img[src*="images/time.png"],
 img[src*="images/page_white_go.png"],
-img[src*="images/folder.png"] {
+img[src*="images/folder.png"],
+img[src*="images/error.png"] {
 	padding-right : 16px !important;
 	width         : 0 !important;
 	height        : 16px !important;
 }
 img[src*="images/tag.png"],
 img[src*="images/folder.png"] {
-	background: transparent url(paper/icon-asterisk.png) 50% 50% no-repeat !important;
+	background: transparent url("@{img}/icon-asterisk.png") 50% 50% no-repeat !important;
 }
 img[src*="images/fresh.png"] {
-	background: transparent url(paper/icon-new.png) 50% 50% no-repeat !important;
+	background: transparent url("@{img}/icon-new.png") 50% 50% no-repeat !important;
 }
 img[src*="images/mark_set.svg"],
 img[src*="images/mark_unset.svg"] {
-	background: transparent url(paper/icon-star.png) 50% 50% no-repeat !important;
+	background: transparent url("@{img}/icon-star.png") 50% 50% no-repeat !important;
 }
-img[src*="images/pub_set.svg"],
-img[src*="images/pub_unset.svg"] {
-	background: transparent url(paper/icon-rss.png) 50% 50% no-repeat !important;
+img[src*="images/pub_set.png"],
+img[src*="images/pub_unset.png"] {
+	background: transparent url("@{img}/icon-rss.png") 50% 50% no-repeat !important;
 }
 img[src*="images/archive.png"] {
-	background: transparent url(paper/icon-package.png) 50% 50% no-repeat !important;
+	background: transparent url("@{img}/icon-package.png") 50% 50% no-repeat !important;
+	background-size: 16px auto !important;
 }
 img[src*="images/time.png"] {
-	background: transparent url(paper/icon-time.png) 50% 50% no-repeat !important;
+	background: transparent url("@{img}/icon-time.png") 50% 50% no-repeat !important;
 }
 img[src*="images/page_white_go.png"] {
-	background: transparent url(paper/article-go.png) 50% 50% no-repeat !important;
+	background: transparent url("@{img}/article-go.png") 50% 50% no-repeat !important;
+}
+img[src*="images/error.png"] {
+	background: transparent url("@{img}/error.png") 50% 50% no-repeat !important;
 }
 img[src*="images/mark_unset.svg"],
-img[src*="images/pub_unset.svg"],
+img[src*="images/pub_unset.png"],
 img[src*="images/page_white_go.png"] {
-	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-	filter: gray; /* IE6-9 */
-	-webkit-filter: ~"grayscale(100%)"; /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+	.filter_greyscale();
+}
+
+.filter_greyscale() {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+	filter: gray;
+	-webkit-filter: ~"grayscale(100%)";
+}
+.filter_normal() {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+	-webkit-filter: ~"grayscale(0%)";
 }
 
 #collapse_feeds_btn {
 	padding     : 1px 0 1px 15px;
-	background  : url(paper/collapse-sidebar.png) 50% 50% no-repeat;
+	background  : url("@{img}/collapse-sidebar.png") 50% 50% no-repeat;
 	text-indent : -999em;
 }
 
@@ -207,6 +224,16 @@ img[src*="images/page_white_go.png"] {
 	display: none;
 }
 
+#headlines-spacer a,
+#headlines-spacer span,
+.insensitive {
+	color: @c-dark;
+
+	&:hover {
+		color: lighten(@c-dark, 10%);
+	}
+}
+
 #ttrssMain {
 
 	.dijitSplitContainer-dijitContentPane,
@@ -220,6 +247,17 @@ img[src*="images/page_white_go.png"] {
 		border  : 0 !important;
 	}
 
+
+	#feeds-holder:before {
+		position         : relative;
+		display          : block;
+		height           : 32px;
+		background-color : @c-cream;
+		content          : '';
+	}
+
+
+	/* main */
 	.dijitSplitterV,
 	.dijitGutterV {
 		background: @c-dark;
@@ -239,12 +277,18 @@ img[src*="images/page_white_go.png"] {
 	.dijitTreeNode .dojoDndItemAfter {
 		display          : block;
 		padding          : 1px 0 !important;
+		height           : auto !important;
 		border           : 0 none !important;
 		background-color : @c-light;
 		color            : @c-dark;
 		font-size        : 12px;
 		line-height      : 20px;
-		height: auto !important;
+
+		&.Error {
+			.dijitTreeLabel {
+				color: @c-sexy-red;
+			}
+		}
 
 		&Hover {
 			background-color : @c-dark-mild;
@@ -252,7 +296,7 @@ img[src*="images/page_white_go.png"] {
 			color            : @c-light;
 
 			.dijitTreeLabel {
-				color: @c-light;
+				color: @c-light !important;
 			}
 		}
 
@@ -260,16 +304,16 @@ img[src*="images/page_white_go.png"] {
 			position         : relative;
 			top              : 0;
 			float            : right;
-			margin           : 0;
+			margin           : 0 !important;
 			padding          : 0 4px;
-			min-width        : 0;
-			height           : auto;
-			border           : 0;
-			border-radius    : 0;
-			background-color : @c-dark;
+			min-width        : 0 !important;
+			height           : auto !important;
+			border           : none !important;
+			border-radius    : 0 !important;
+			background-color : @c-dark !important;
 			color            : @c-light;
-			font-size        : 12px;
-			line-height      : 23px;
+			font-size        : 12px !important;
+			line-height      : 23px !important;
 
 			&:before {
 				position      : absolute;
@@ -306,7 +350,8 @@ img[src*="images/page_white_go.png"] {
 		font-weight    : normal !important;
 	}
 
-	.dijitTreeRowSelected .dijitTreeLabel {
+	.dijitTreeRowSelected .dijitTreeLabel,
+	.dijitTreeRowSelected.Error .dijitTreeLabel {
 		color       : @c-light;
 	}
 
@@ -324,15 +369,17 @@ img[src*="images/page_white_go.png"] {
 		}
 
 		.dijitTreeLabel {
+			position    : relative;
+			top         : -2px;
 			color       : @c-light;
 			font-weight : normal !important;
 			line-height : 28px;
 		}
 
 		.counterNode {
-			background-color : @c-light;
-			color            : @c-dark;
-			line-height      : 30px;
+			background-color : @c-light !important;
+			color            : @c-dark !important;
+			line-height      : 30px !important;
 
 			&:before {
 				border-top-width    : 15px;
@@ -344,7 +391,7 @@ img[src*="images/page_white_go.png"] {
 		.dijitTreeExpando {
 			margin-top       : 5px !important;
 			vertical-align   : text-top;
-			background-image : url(paper/tree-expand.png);
+			background-image : url("@{img}/tree-expand.png");
 		}
 
 		.loadingNode {
@@ -357,9 +404,7 @@ img[src*="images/page_white_go.png"] {
 	#feedTree {
 		img.feedIcon,
 		img.tinyFeedIcon {
-			filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-			filter: gray; /* IE6-9 */
-			-webkit-filter: ~"grayscale(100%)"; /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+			.filter_greyscale();
 		}
 
 		img.feedIcon {
@@ -370,8 +415,7 @@ img[src*="images/page_white_go.png"] {
 		.dijitTreeRowHover img.tinyFeedIcon,
 		.dijitTreeRowSelected img.feedIcon,
 		.dijitTreeRowSelected img.tinyFeedIcon {
-			filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
-			-webkit-filter: ~"grayscale(0%)";
+			.filter_normal();
 		}
 	}
 
@@ -390,12 +434,12 @@ img[src*="images/page_white_go.png"] {
 		font-size     : 12px;
 
 		a {
-			color           : @c-light !important;
+			color           : @c-light;
 			text-decoration : none;
 
 			&:hover {
 				border-bottom   : 1px dotted;
-				color           : @c-lighter !important;
+				color           : @c-lighter;
 				text-decoration : none;
 			}
 		}
@@ -405,6 +449,7 @@ img[src*="images/page_white_go.png"] {
 			line-height : 2;
 		}
 	}
+
 	.dijitSplitContainer-child,
 	.dijitBorderContainer-child {
 		padding : 0;
@@ -434,13 +479,69 @@ img[src*="images/page_white_go.png"] {
 		float: right;
 	}
 
+/* fixed feed name */
+	#feed_title {
+		position      : fixed;
+		top           : 0;
+		left          : 24px;
+		z-index       : 1;
+		overflow      : hidden;
+		max-width     : 240px;
+		color         : @c-dark;
+		text-align    : left;
+		text-overflow : ellipsis;
+		white-space   : nowrap;
+		font-weight   : bold;
+		font-size     : 24px;
+		font-family   : 'Open Sans Condensed', sans-serif !important;
+		line-height   : 32px;
+
+		a {
+			color       : inherit !important;
+			font-family : inherit !important;
+
+			&:hover {
+				border : 0 !important;
+				color  : @c-dark-mild !important;
+			}
+		}
+
+		&.error {
+			color: @c-sexy-red;
+
+			img[src*="images/error.png"] {
+				top: 0;
+			}
+		}
+	}
+
+	#headlines-toolbar .r > a:first-child {
+		position : fixed;
+		top      : 6px;
+		left     : 4px;
+		z-index  : 1;
+
+		img {
+			background-image: url("@{img}/icon-rss-dark.png") !important;
+		}
+	}
+
+	#selected_prompt {
+		padding          : 5px 10px 0 0;
+		color            : @c-light;
+		white-space      : nowrap;
+		font-style       : normal;
+		line-height      : 1.8;
+	}
+
 
 /* buttons */
 	.dijitToolbar .dijitToggleButton,
 	.dijitToolbar .dijitButton,
 	.dijitToolbar .dijitDropDownButton,
 	.dijitToolbar .dijitComboButton {
-		vertical-align: top;
+		border         : 0;
+		vertical-align : top;
 	}
 
 	.dijitToolbar .actionChooser {
@@ -504,7 +605,7 @@ img[src*="images/page_white_go.png"] {
 	.dijitSelect .dijitArrowButtonInner,
 	.dijitComboBox .dijitArrowButtonInner,
 	.dijitArrowButtonInner {
-		background: url(paper/arrow-down.png) 50% 50% no-repeat;
+		background: url("@{img}/arrow-down.png") 50% 50% no-repeat;
 	}
 
 	.dijitSelectHover .dijitArrowButtonInner,
@@ -527,11 +628,11 @@ img[src*="images/page_white_go.png"] {
 	.dijitSelectMenu .dijitMenuItemSelected td,
 	.dijitMenuItemHover,
 	.dijitMenuItemSelected {
-		background-color : @c-dark-mild !important;
-		background-image : none !important;
+		background: @c-dark-mild !important;
 
 		td.dijitMenuItemLabel {
-			color: @c-light;
+			background : @c-dark-mild;
+			color      : @c-light;
 		}
 	}
 
@@ -539,11 +640,6 @@ img[src*="images/page_white_go.png"] {
 	.dijitComboBoxMenu .dijitMenuItem {
 		padding : 5px 6px !important;
 		border  : 0 !important;
-	}
-
-	.dijitCheckBox,
-	.dijitCheckBoxIcon {
-		background-image: url(paper/checkboxes.png);
 	}
 
 }
@@ -657,6 +753,7 @@ span.contentPreview {
 div.postReply {
 
 	div.postHeader {
+		margin-right     : 0;
 		border           : 1px solid @c-dark;
 		border-width     : 5px 0 1px;
 		background-color : @c-cream-dark !important;
@@ -675,13 +772,113 @@ div.postReply {
 
 /* floating title */
 div#floatingTitle {
-	top: 30px;
-	box-shadow: none;
-	background-color: @c-cream-dark;
-	border-color: @c-dark;
-	border-bottom-width: 5px;
+	top                 : 0;
+	border-color        : @c-dark;
+	border-bottom-width : 5px;
+	background-color    : @c-cream-dark;
+	box-shadow          : none;
+}
+#main-toolbar {
+	height: 25px;
+}
+#main-toolbar #headlines-toolbar {
+	float          : left;
+	padding-bottom : 4px;
+	width          : auto;
+}
 
-	span.titleWrap {
+/* tooltip */
+.claro {
+	.dijitTooltipContainer {
+		border        : 1px solid @c-dark;
+		border-radius : 2px;
+		background    : @c-light;
+		box-shadow    : none;
+		color         : @c-dark;
+		font-size     : 12px;
+	}
+	.dijitTooltipConnector {
+		background-image: url("@{img}/tooltip.png");
+	}
+}
 
+/* forms */
+.claro {
+
+	.dijitDialogUnderlay {
+		background-color : @c-dark;
+		opacity          : .8;
+	}
+
+	.dijitDialog {
+		border-color     : @c-dark;
+		background-color : @c-light;
+
+		.dijitInputInner {
+			color: #fff !important;
+		}
+
+		button,
+		input[type="submit"],
+		.dijitButton,
+		.dijitComboButton {
+			border           : 0;
+			border-radius    : 2px;
+			background       : transparent;
+			background-color : @c-dark-mild;
+			box-shadow       : none;
+			color            : @c-light;
+
+			&:hover {
+				background-color: @c-dark;
+			}
+			&:active {
+				background-color : @c-dark-mild;
+			}
+		}
+	}
+
+	.dijitDialogTitleBar {
+		border           : 0;
+		background       : transparent;
+		background-color : @c-dark;
+	}
+	.dijitDialogTitle {
+		color: @c-light;
+	}
+
+	.dijitDialogPaneContent {
+		background-color: transparent;
+	}
+
+	.dijitTextBoxFocused {
+		.dijitInputContainer {
+			background-color: @c-dark-mild;
+		}
+	}
+
+	.dijitButtonNode {
+		transition: none;
+	}
+
+	.dijitDialogCloseIcon {
+		width            : 20px;
+		height           : 20px;
+		border-radius    : 2px;
+		background       : transparent;
+		background-color : @c-dark-mild;
+
+		&:after {
+			display     : block;
+			width       : 20px;
+			color       : @c-light;
+			content     : '×';
+			text-align  : center;
+			font-size   : 18px;
+			line-height : 20px;
+		}
+		&Hover {
+			background-color: darken(@c-dark, 10%);
+		}
 	}
 }
