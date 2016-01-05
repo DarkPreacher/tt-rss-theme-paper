@@ -1,8 +1,8 @@
-### Tiny Tiny RSS Paper Theme, v. 0.2.4
+### Tiny Tiny RSS Paper Theme, v. 0.2.5
 
-Paper theme for [Tiny Tiny RSS](http://tt-rss.org/redmine/projects/tt-rss/wiki), will be updated to be compatible with latest release. Currently 1.15.3
+Paper theme for [Tiny Tiny RSS](https://tt-rss.org/gitlab/fox/tt-rss/wikis/home), will be updated to be compatible with latest release, I hope so. Currently 15.7
 
-Modern browsers only. Tested in Firefox 37 and Chrome 40, correct work in other browsers not guaranteed.
+Modern browsers only. Tested in Firefox 43 and Chrome 40, correct work in other browsers not guaranteed.
 
 #### Combined view, with auto-expand
 ![combined, auto-expand](https://raw.github.com/DarkPreacher/tt-rss-theme-paper/master/paper-previews/paper-combined-auto-expand.jpg)

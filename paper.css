@@ -1,9 +1,9 @@
-/*! supports-version:1.15.3
+/*! supports-version:15.7
 Tiny Tiny RSS Paper Theme
 Author: Dark Preacher
 Email: dark[at]darklab.ru
-Version: 0.2.4
-Date: 2015.03.18
+Version: 0.2.5
+Date: 2016.01.05
 
 Some icons are created by FatCow Web Hosting.
 These icons are licensed under a Creative Commons Attribution 3.0 License.
@@ -28,6 +28,23 @@ body {
 div.cdmContentInner p,
 div.postContent p {
   max-width: 100% !important;
+}
+div.cdmContentInner img,
+div.postContent img {
+  display: block;
+  max-width: 100%;
+}
+div.cdmContentInner img[align="left"],
+div.postContent img[align="left"] {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+div.cdmContentInner img[align="right"],
+div.postContent img[align="right"] {
+  float: right;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 .hl a.title,
 div.cdm.expandable a.title,
@@ -171,6 +188,17 @@ img[src*="images/page_white_go.png"] {
   padding: 1px 0 1px 15px;
   background: url("paper/collapse-sidebar.png") 50% 50% no-repeat;
   text-indent: -999em;
+}
+.claro .dijitSelect,
+.claro .dijitSelect .dijitButtonContents,
+.claro .dijitTextBox,
+.claro .dijitTextBox .dijitButtonNode,
+.claro .dijitToolbar .dijitButton .dijitButtonNode,
+.claro .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.claro .dijitToolbar .dijitComboButton .dijitButtonNode,
+.claro .dijitToolbar .dijitToggleButton .dijitButtonNode,
+.claro .dijitToolbar .dijitComboBox .dijitButtonNode {
+  transition: all .01s linear;
 }
 /* sidebar */
 
@@ -450,7 +478,7 @@ img[src*="images/page_white_go.png"] {
   background-image: url("paper/icon-rss-dark.png") !important;
 }
 #ttrssMain #selected_prompt {
-  padding: 5px 10px 0 0;
+  padding: 0 10px 0 0;
   color: #f4efe2;
   white-space: nowrap;
   font-style: normal;
@@ -593,6 +621,9 @@ div.cdm.expandable div.cdmHeader,
 div.cdm.expanded div.cdmFooter,
 div.cdm.expandable div.cdmFooter {
   position: relative;
+  padding: 0;
+  width: 100%;
+  border: 0;
   background-color: #e4decd !important;
   color: #464646;
 }
@@ -672,6 +703,7 @@ div.postReply div.postDate {
 
 div#floatingTitle {
   top: 0;
+  margin-right: 0 !important;
   border-color: #464646;
   border-bottom-width: 5px;
   background-color: #d2c8ac;
@@ -769,4 +801,9 @@ div#floatingTitle {
 }
 .claro .dijitDialogCloseIconHover {
   background-color: #2d2d2d;
+}
+.claro .dijitToolbar .dijitDropDownButton .dijitButtonText,
+.claro .dijitToolbar .dijitDownArrowButton .dijitButtonText,
+.claro .dijitToolbar .dijitComboButton .dijitButtonText {
+  color: #f4efe2 !important;
 }

@@ -1,9 +1,9 @@
-/*! supports-version:1.15.3
+/*! supports-version:15.7
 Tiny Tiny RSS Paper Theme
 Author: Dark Preacher
 Email: dark[at]darklab.ru
-Version: 0.2.4
-Date: 2015.03.18
+Version: 0.2.5
+Date: 2016.01.05
 
 Some icons are created by FatCow Web Hosting.
 These icons are licensed under a Creative Commons Attribution 3.0 License.
@@ -41,6 +41,22 @@ div.cdmContentInner,
 div.postContent {
 	p {
 		max-width: 100% !important;
+	}
+	img {
+		display   : block;
+		max-width : 100%;
+
+		&[align="left"] {
+			float         : left;
+			margin-right  : 10px;
+			margin-bottom : 10px;
+		}
+
+		&[align="right"] {
+			float         : right;
+			margin-bottom : 10px;
+			margin-left   : 10px;
+		}
 	}
 }
 
@@ -208,6 +224,18 @@ img[src*="images/page_white_go.png"] {
 	padding     : 1px 0 1px 15px;
 	background  : url("@{img}/collapse-sidebar.png") 50% 50% no-repeat;
 	text-indent : -999em;
+}
+
+.claro .dijitSelect,
+.claro .dijitSelect .dijitButtonContents,
+.claro .dijitTextBox,
+.claro .dijitTextBox .dijitButtonNode,
+.claro .dijitToolbar .dijitButton .dijitButtonNode,
+.claro .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.claro .dijitToolbar .dijitComboButton .dijitButtonNode,
+.claro .dijitToolbar .dijitToggleButton .dijitButtonNode,
+.claro .dijitToolbar .dijitComboBox .dijitButtonNode {
+	transition: all .01s linear;
 }
 
 /* sidebar */
@@ -527,7 +555,7 @@ img[src*="images/page_white_go.png"] {
 	}
 
 	#selected_prompt {
-		padding          : 5px 10px 0 0;
+		padding          : 0 10px 0 0;
 		color            : @c-light;
 		white-space      : nowrap;
 		font-style       : normal;
@@ -688,6 +716,9 @@ div.cdm.expandable {
 	div.cdmHeader,
 	div.cdmFooter {
 		position         : relative;
+		padding          : 0;
+		width            : 100%;
+		border           : 0;
 		background-color : @c-cream !important;
 		color            : @c-dark;
 
@@ -773,6 +804,7 @@ div.postReply {
 /* floating title */
 div#floatingTitle {
 	top                 : 0;
+	margin-right        : 0 !important;
 	border-color        : @c-dark;
 	border-bottom-width : 5px;
 	background-color    : @c-cream-dark;
@@ -880,5 +912,11 @@ div#floatingTitle {
 		&Hover {
 			background-color: darken(@c-dark, 10%);
 		}
+	}
+
+	.dijitToolbar .dijitDropDownButton .dijitButtonText,
+	.dijitToolbar .dijitDownArrowButton .dijitButtonText,
+	.dijitToolbar .dijitComboButton .dijitButtonText {
+		color: @c-light !important;
 	}
 }
