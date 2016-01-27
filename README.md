@@ -1,6 +1,6 @@
 ### Tiny Tiny RSS Paper Theme, v. 0.2.5
 
-Paper theme for [Tiny Tiny RSS](https://tt-rss.org/gitlab/fox/tt-rss/wikis/home), will be updated to be compatible with latest release, I hope so. Currently 15.7
+Paper theme for [Tiny Tiny RSS](https://tt-rss.org/gitlab/fox/tt-rss/wikis/home), will be updated to be compatible with latest release, I hope so. Currently 16.1
 
 Modern browsers only. Tested in Firefox 43 and Chrome 40, correct work in other browsers not guaranteed.
 
